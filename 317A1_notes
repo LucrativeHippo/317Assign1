@@ -1,0 +1,70 @@
+A*
+-Find shortest path to point
+
+Heuristic=
++Distance to point
++ distance to drop off package
+if destination is not garage
+(+distance back to garage)
+
+//Only if destination is not garage or can pick up multiple packages
+Any package picked up after drop off would either: 
+have an equal dist-cost(On the path back to garage) or increase the dist-cost
+
+
+
+G Cost
+Total Distance truck has travelled
+
+
+
+
+
+
+Graph Storage
+-Graph of map
+-List of packages
+-list of Trucks
+-to save memory package is deleted from list after delivery
+
+
+
+
+Path Planning
+-save Path taken to package
+
+Since Trucks can only pick up one package
+and their destination is the garage
+Instead of using A* to find path back:
+-reverse package path to go back to garage
+
+
+
+
+
+Which Truck to use?
+One truck will cover the same distance as all the trucks going out
+
+A*- having a graph of graphs then A* to different points would give the best result
+--- Takes quite a bit to implement
+
+Greedy Search
+--- This is what we implemented
+--- Does contain problem of not always giving best solution because heuristic isn't accurate
+--- Easier to implement
+Go down highest heuristic path with least distance travelled truck
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
