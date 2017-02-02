@@ -1,14 +1,15 @@
-from Graph import *
+from Position import *
 
 
 class Package(Pos):
-    def __init__(self,x,y):
+    def __init__(self, source, destination):
         """
 
         :param x: x Position
         :param y: y Position
         """
-        super().__init__(x,y)
+        self.source = source
+        self.destination = destination
         self.carried = False
         self.delivered = False
 
