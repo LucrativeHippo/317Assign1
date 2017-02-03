@@ -17,6 +17,7 @@ class Vertex:
     def __repr__(self):
         return "Vertex Fill"
 
+
 class Graph:
     def __init__(self):
         self.vertex = [Vertex]
