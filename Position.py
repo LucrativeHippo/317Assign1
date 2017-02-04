@@ -11,6 +11,19 @@ class Pos(object):
         self.x = x
         self.y = y
 
+    def __set__(self, instance, value):
+        """
+
+        :param instance:
+        :type instance:
+        :param value:
+        :type value: Pos
+        :return:
+        :rtype:
+        """
+        self.x = value.x
+        self.y = value.y
+
     def __repr__(self):
         """
 
@@ -18,3 +31,12 @@ class Pos(object):
         """
         return "(" + str(self.x) + "," + str(self.y) + ")"
 
+    def __cmp__(self, other):
+        """
+
+        :param other:
+        :type other: Pos
+        :return:
+        :rtype:
+        """
+        return (self.x == other.x) & (self.y == other.y)

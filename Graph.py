@@ -1,13 +1,27 @@
 class Edge:
-    def __init__(self, vertex, weight=0):
-        self.nextVertex = vertex
+    def __init__(self, nextVertex, weight=0):
+        """
+
+        :param nextVertex:
+        :type nextVertex: Vertex
+        :param weight:
+        :type weight:
+        """
+        self.nextVertex = nextVertex
         self.weight = weight
 
 
 class Vertex:
-    def __init__(self, data=None):
+    def __init__(self, data=None, edges=list()):
+        """
+
+        :param data:
+        :type data: object
+        :param edges:
+        :type edges: list[Edge]
+        """
         self.data = data
-        self.edges = list()
+        self.edges = edges
 
     def add_edge(self, vertex, weight=0, undirected=True):
         self.edges.append(Edge(vertex, weight))
@@ -17,9 +31,10 @@ class Vertex:
     def __repr__(self):
         return "Vertex Fill"
 
+
 class Graph:
     def __init__(self):
-        self.vertex = [Vertex]
+        self.vertices = []
 
     def add_vertex(self, data=None):
         """
@@ -28,7 +43,7 @@ class Graph:
         :param data:
         :return:
         """
-        self.vertexes.append(Vertex(data))
+        self.vertices.append(Vertex(data))
 
     def addEdge(self, vertex1, vertex2, weight=0, undirected=True):
         """
@@ -45,12 +60,12 @@ class Graph:
         vertex1.add_edge(vertex2, weight, undirected)
 
     def getVertexByIndex(self, index):
-        if(index>=0) & (index<self.vertexes.__len__()):
-            return self.vertexes[index]
+        if(index>=0) & (index<self.vertices.__len__()):
+            return self.vertices[index]
         return None
 
     def getVertexByData(self, data):
-        for v in self.vertex:
+        for v in self.vertices:
             if v.data == data:
                 return v
         return None
