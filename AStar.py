@@ -46,6 +46,9 @@ class AStarNode:
         """
         return self.vertex.data.__cmp__(other.vertex.data)
 
+    def __repr__(self):
+        return str(self.vertex) + "<-" + str(self.prev)
+
 
 def getANode(aList,vertex):
     """
@@ -71,28 +74,37 @@ def AStar(start, dest):
     :param dest: destination vertex
     :return: AStarNode with path to dest from start reversed
     """
-    node_list = []
-
-    node_list.append(AStarNode(start))
+    node_list = [AStarNode(start)]
+    visited_list = dict
+    cur_node = None
 
     while len(node_list) != 0:
         cur_node = node_list.pop()
-        print("cur" + str(cur_node))
+        visited_list[str(cur_node.vertex.data)] = True
+        # print("cur" + str(cur_node))
         if cur_node.vertex.data.__cmp__(dest):
             return cur_node
 
         for e in cur_node.vertex.edges:
+            # if the next node has already been visited: ignore
+            if visited_list[e.nextVertex.data] is None:
+                break
+
+# Create a new node to visit
             aTemp = AStarNode(e.nextVertex,
                               cur_node,
                               e.weight,
                               get_hcost(e.nextVertex, dest)
                               )
-            inList = getANode(node_list,aTemp.vertex)
-
-            if inList is None:
+            # get aTemp from node_list
+            inList = getANode(node_list, aTemp.vertex)
+            if inList is None:  # haven't visited node yet
+                #  add it to the list
                 node_list.append(aTemp)
-            else:
-                if aTemp.gcost<inList.gcost:
+            else:  # have visited node
+                # check which path is better
+                if aTemp.gcost < inList.gcost:
+                    # replace if it is better
                     node_list.remove(inList)
 #               else: do nothing
         node_list.sort(key=lambda x: x.gcost+x.hcost)

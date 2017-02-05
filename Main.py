@@ -82,15 +82,14 @@ del v2
 
 print("Graph Tests:", end=" ")
 g = Graph()
-for i in range(0,3):
-    for j in range(0,3):
+for i in range(0, 3):
+    for j in range(0, 3):
         g.add_vertex(Pos(i, j))
-
 
 
 print(getVertexByPos(g, 0, 0))
 
 print("Passed")
-g.addEdge(g.getVertexByIndex(0),g.getVertexByIndex(1))
+g.addEdge(g.vertices[0],g.vertices[1])
 
-x=AStar(g.getVertexByIndex(0),g.getVertexByIndex(1))
+x=AStar(g.vertices[0],g.vertices[1])

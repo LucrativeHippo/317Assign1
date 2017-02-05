@@ -25,13 +25,19 @@ class Vertex:
         self.y = data.y
         self.edges = edges
 
-    def add_edge(self, vertex, weight, undirected=True):
+    def add_edge(self, vertex, weight):
+        # auto weight
+        weight = abs(vertex.x-self.x)+abs(vertex.y-self.y)
         self.edges.append(Edge(vertex, weight))
-        if undirected:
-            vertex.edges.append(Edge(self, weight))
 
     def __repr__(self):
-        return "Vertex: " + str(self.x) + " " + str(self.y)
+        return "V(" + str(self.x) + "," + str(self.y) + ")"
+
+    def __cmp__(self, other):
+        if type(other) == type(self):
+            return self.data.__cmp__(other.data)
+        else:
+            return self.data.__cmp__(other)
 
 
 class Graph:
@@ -45,7 +51,7 @@ class Graph:
         :param data:
         :return:
         """
-        self.vertices.append(Vertex(data=data,edges=[]))
+        self.vertices.append(Vertex(data=data, edges=[]))
 
     def addEdge(self, vertex1, vertex2, weight=1, undirected=True):
         """
@@ -59,12 +65,9 @@ class Graph:
         :param undirected:
         :return:
         """
-        vertex1.add_edge(vertex2, weight, undirected)
-
-    def getVertexByIndex(self, index):
-        if(index>=0) & (index<self.vertices.__len__()):
-            return self.vertices[index]
-        return None
+        vertex1.add_edge(vertex2, weight)
+        if undirected:
+            vertex2.add_edge(vertex1, weight)
 
     def getVertexByData(self, data):
         for v in self.vertices:
