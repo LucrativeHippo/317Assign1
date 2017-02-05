@@ -44,20 +44,20 @@ class AStarNode:
         :param other:
         :return:
         """
-        return self.vertex.__cmp__(other.vertex)
+        return self.vertex.data.__cmp__(other.vertex.data)
 
 
 def getANode(aList,vertex):
     """
 
-    :type aList: list[AStarNode]
+    :type aList: list
     :param aList:
     :type pos: Vertex
     :param pos:
     :return:
     """
     for n in aList:
-        if n.vertex.__cmp__(vertex):
+        if n.vertex.data.__cmp__(vertex.data):
             return n
     return None
 
@@ -75,9 +75,10 @@ def AStar(start, dest):
 
     node_list.append(AStarNode(start))
 
-    while node_list.len() != 0:
+    while len(node_list) != 0:
         cur_node = node_list.pop()
-        if cur_node.vertex.__cmp__(dest):
+        print("cur" + str(cur_node))
+        if cur_node.vertex.data.__cmp__(dest):
             return cur_node
 
         for e in cur_node.vertex.edges:
@@ -86,12 +87,12 @@ def AStar(start, dest):
                               e.weight,
                               get_hcost(e.nextVertex, dest)
                               )
-            inList = getANode(cur_node,aTemp.vertex)
+            inList = getANode(node_list,aTemp.vertex)
 
             if inList is None:
                 node_list.append(aTemp)
             else:
-                if aTemp.gCost<inList.gCost:
+                if aTemp.gcost<inList.gcost:
                     node_list.remove(inList)
 #               else: do nothing
         node_list.sort(key=lambda x: x.gcost+x.hcost)

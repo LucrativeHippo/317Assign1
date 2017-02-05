@@ -1,5 +1,5 @@
 class Edge:
-    def __init__(self, nextVertex, weight=0):
+    def __init__(self, nextVertex, weight):
         """
 
         :param nextVertex:
@@ -21,15 +21,17 @@ class Vertex:
         :type edges: list[Edge]
         """
         self.data = data
+        self.x = data.x
+        self.y = data.y
         self.edges = edges
 
-    def add_edge(self, vertex, weight=0, undirected=True):
+    def add_edge(self, vertex, weight, undirected=True):
         self.edges.append(Edge(vertex, weight))
         if undirected:
             vertex.edges.append(Edge(self, weight))
 
     def __repr__(self):
-        return "Vertex Fill"
+        return "Vertex: " + str(self.x) + " " + str(self.y)
 
 
 class Graph:
@@ -43,9 +45,9 @@ class Graph:
         :param data:
         :return:
         """
-        self.vertices.append(Vertex(data))
+        self.vertices.append(Vertex(data=data))
 
-    def addEdge(self, vertex1, vertex2, weight=0, undirected=True):
+    def addEdge(self, vertex1, vertex2, weight=1, undirected=True):
         """
 
         :type vertex1: Vertex
@@ -66,6 +68,6 @@ class Graph:
 
     def getVertexByData(self, data):
         for v in self.vertices:
-            if v.data == data:
+            if v.data.__cmp__(data):
                 return v
         return None
