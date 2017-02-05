@@ -126,6 +126,6 @@ g.add_edge(g[Pos(1,3)], g[Pos(2,3)])
 g.add_edge(g[Pos(2,3)], g[Pos(3,3)])
 
 
-x=AStar(g[Pos(0,0)], g[Pos(1,2)])
+x=AStar(g[Pos(0,0)], g[Pos(3,3)])
 
 print(x)

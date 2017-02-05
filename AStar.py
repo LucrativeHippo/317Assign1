@@ -106,7 +106,9 @@ def AStar(start, dest):
                         # replace if it is better
                         node_list.remove(inList)
     #               else: do nothing
-        node_list.sort(key=lambda x: x.gcost+x.hcost)
+        print(node_list)
+        node_list.sort(key=lambda x: x.gcost+x.hcost, reverse=True)
+        print(node_list)
 
     # The completed Astar did reveal the correct path
     if cur_node.vertex.data.__cmp__(dest):
