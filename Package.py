@@ -10,6 +10,3 @@ class Package(Pos):
         """
         super().__init__(pos.x, pos.y)
         # self.destination = destination
-
-    def __cmp__(self, other):
-        return super().__cmp__(self, other)

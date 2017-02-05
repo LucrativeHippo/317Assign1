@@ -13,6 +13,7 @@ class Truck(Pos):
         """
         super().__init__(pos.x, pos.y)
         self.packs = packs
+        self.distance = 0
 
     def __repr__(self):
         """
@@ -41,6 +42,5 @@ class Truck(Pos):
         """
         self.x = pos.x
         self.y = pos.y
-        self.packs.x = pos.x
-        self.packs.y = pos.y
+
 

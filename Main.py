@@ -54,7 +54,6 @@ def TEST():
     assert t.packs == pack
 #   MOVE POSITION
     t.goto(Pos(2,1))
-    assert t.__cmp__(pack)
     print("Passed")
 
     print("Vertex Tests:", end=" ")

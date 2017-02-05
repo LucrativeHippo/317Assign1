@@ -29,13 +29,37 @@ class AStarNode:
         :param vertex: Current vertex data
         :param prev: previous AStarNode
         """
-        self.data = vertex
+        self.vertex = vertex
         self.prev = prev
         self.hcost= hcost
         if prev is None:
-            self.gCost = gcost
+            self.gcost = gcost
         else:
-            self.gCost = prev.gCost + gcost
+            self.gcost = prev.gcost + gcost
+
+    def __cmp__(self,other):
+        """
+
+        :type other: AStarNode
+        :param other:
+        :return:
+        """
+        return self.vertex.__cmp__(other.vertex)
+
+
+def getANode(aList,vertex):
+    """
+
+    :type aList: list[AStarNode]
+    :param aList:
+    :type pos: Vertex
+    :param pos:
+    :return:
+    """
+    for n in aList:
+        if n.vertex.__cmp__(vertex):
+            return n
+    return None
 
 
 def AStar(start, dest):
@@ -47,11 +71,31 @@ def AStar(start, dest):
     :param dest: destination vertex
     :return: AStarNode with path to dest from start reversed
     """
-    node_list = None
-    cur_node = AStarNode(start)
+    node_list = list()
 
-    while cur_node.data is not dest:
-        for v in cur_node.data.edges.nextVertex
+    node_list.append(AStarNode(start))
+
+    while node_list.len() != 0:
+        cur_node = node_list.pop()
+        if cur_node.vertex.__cmp__(dest):
+            return cur_node
+
+        for e in cur_node.vertex.edges:
+            aTemp = AStarNode(e.nextVertex,
+                              cur_node,
+                              e.weight,
+                              get_hcost(e.nextVertex, dest)
+                              )
+            inList = getANode(cur_node,aTemp.vertex)
+
+            if inList is None:
+                node_list.append(aTemp)
+            else:
+                if aTemp.gCost<inList.gCost:
+                    node_list.remove(inList)
+#               else: do nothing
+        node_list.sort(key=lambda x: x.gcost+x.hcost)
+
 
 
     return cur_node
