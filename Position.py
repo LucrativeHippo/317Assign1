@@ -40,3 +40,6 @@ class Pos(object):
         :rtype:
         """
         return (self.x == other.x) & (self.y == other.y)
+
+    def __hash__(self):
+        return hash((self.x, self.y))

@@ -16,7 +16,7 @@ def getVertexByPos(g,x,y):
     :return:
     :rtype:
     """
-    return g.getVertexByData(Pos(x, y))
+    return g[Pos(x, y)]
 
 
 
@@ -90,6 +90,10 @@ for i in range(0, 3):
 print(getVertexByPos(g, 0, 0))
 
 print("Passed")
-g.addEdge(g.vertices[0],g.vertices[1])
 
-x=AStar(g.vertices[0],g.vertices[1])
+
+g.add_edge(g[Pos(0,0)], g[Pos(0,1)])
+
+x=AStar(g[Pos(0,0)], g[Pos(0,0)])
+
+print(x)

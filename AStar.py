@@ -75,7 +75,7 @@ def AStar(start, dest):
     :return: AStarNode with path to dest from start reversed
     """
     node_list = [AStarNode(start)]
-    visited_list = dict
+    visited_list = dict()
     cur_node = None
 
     while len(node_list) != 0:
@@ -86,32 +86,33 @@ def AStar(start, dest):
             return cur_node
 
         for e in cur_node.vertex.edges:
-            # if the next node has already been visited: ignore
-            if visited_list[e.nextVertex.data] is None:
-                break
+            # if the next node has not been visited: visit it
+            if visited_list.get(str(e.nextVertex.data)) is None:
 
-# Create a new node to visit
-            aTemp = AStarNode(e.nextVertex,
-                              cur_node,
-                              e.weight,
-                              get_hcost(e.nextVertex, dest)
-                              )
-            # get aTemp from node_list
-            inList = getANode(node_list, aTemp.vertex)
-            if inList is None:  # haven't visited node yet
-                #  add it to the list
-                node_list.append(aTemp)
-            else:  # have visited node
-                # check which path is better
-                if aTemp.gcost < inList.gcost:
-                    # replace if it is better
-                    node_list.remove(inList)
-#               else: do nothing
+                # Create a new node to visit
+                aTemp = AStarNode(e.nextVertex,
+                                  cur_node,
+                                  e.weight,
+                                  get_hcost(e.nextVertex, dest)
+                                  )
+                # get aTemp from node_list
+                inList = getANode(node_list, aTemp.vertex)
+                if inList is None:  # haven't visited node yet
+                    #  add it to the list
+                    node_list.append(aTemp)
+                else:  # have visited node
+                    # check which path is better
+                    if aTemp.gcost < inList.gcost:
+                        # replace if it is better
+                        node_list.remove(inList)
+    #               else: do nothing
         node_list.sort(key=lambda x: x.gcost+x.hcost)
 
-
-
-    return cur_node
+    # The completed Astar did reveal the correct path
+    if cur_node.vertex.data.__cmp__(dest):
+        return cur_node
+    else:  # No path from Start to Destination
+        return None
 
 
 
