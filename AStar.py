@@ -1,5 +1,6 @@
 from Graph import Vertex
 from Graph import Edge
+from Graph import Graph
 from Position import Pos
 import math
 
@@ -13,7 +14,10 @@ def get_hcost(start, dest):
     :param dest:
     :return: heuristic cost from start to dest
     """
+#   Straight line distance
     return math.sqrt(math.pow((start.x-dest.x), 2) + math.pow((start.y-dest.y), 2))
+#   Boardwalk distance
+#   return abs(start.x-dest.x)+abs(start.y-dest.y)
 
 
 class AStarNode:
@@ -46,14 +50,17 @@ def AStar(start, dest):
     node_list = None
     cur_node = AStarNode(start)
 
-
     while cur_node.data is not dest:
-
-        assert isinstance(cur_node.data, Pos)
-        cur_node.data.x
+        for v in cur_node.data.edges.nextVertex
 
 
     return cur_node
+
+
+
+
+
+
 
 
 
