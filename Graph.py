@@ -12,7 +12,7 @@ class Edge:
 
 
 class Vertex:
-    def __init__(self, data=None, edges=list()):
+    def __init__(self, data=None, edges=[]):
         """
 
         :param data:
@@ -45,7 +45,7 @@ class Graph:
         :param data:
         :return:
         """
-        self.vertices.append(Vertex(data=data))
+        self.vertices.append(Vertex(data=data,edges=[]))
 
     def addEdge(self, vertex1, vertex2, weight=1, undirected=True):
         """

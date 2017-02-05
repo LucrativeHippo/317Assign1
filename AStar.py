@@ -71,7 +71,7 @@ def AStar(start, dest):
     :param dest: destination vertex
     :return: AStarNode with path to dest from start reversed
     """
-    node_list = list()
+    node_list = []
 
     node_list.append(AStarNode(start))
 

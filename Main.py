@@ -62,19 +62,23 @@ v = Vertex(Pos(0, 0))
 assert v.data.__cmp__(Pos(0, 0))
 print(v.edges)
 assert v.edges == []
+assert len(v.edges) == 0
 print("Passed")
 
 print("Edge Tests:", end=" ")
 #   SIMPLE EDGE TEST
-e = Edge(v, 1)
-assert e.weight == 1
+e = Edge(v, 4)
+assert e.weight == 4
 assert e.nextVertex == v
 #   ADD EDGE POINT
 v2 = Vertex(Pos(1, 0))
 v.add_edge(v2,1)
 assert v.edges[0].weight == 1
 assert v.edges[0].nextVertex == v2
+assert len(v.edges) == 1
 print("Passed")
+del v
+del v2
 
 print("Graph Tests:", end=" ")
 g = Graph()
