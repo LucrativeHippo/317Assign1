@@ -82,18 +82,50 @@ del v2
 
 print("Graph Tests:", end=" ")
 g = Graph()
-for i in range(0, 3):
-    for j in range(0, 3):
+for i in range(0, 4):
+    for j in range(0, 4):
         g.add_vertex(Pos(i, j))
 
 
 print(getVertexByPos(g, 0, 0))
 
 print("Passed")
+"""
+for i in range(0, 3):
+    for j in range(0, 2):
+        g.add_edge(g[Pos(i, j)],g[Pos(i, j+1)])
 
+for i in range(0, 3):
+    for j in range(0, 2):
+        g.add_edge(g[Pos(j, i)], g[Pos(j+1, i)])
+"""
 
 g.add_edge(g[Pos(0,0)], g[Pos(0,1)])
+g.add_edge(g[Pos(0,1)], g[Pos(0,2)])
+g.add_edge(g[Pos(0,2)], g[Pos(0,3)])
+g.add_edge(g[Pos(1,0)], g[Pos(1,1)])
+g.add_edge(g[Pos(1,1)], g[Pos(1,2)])
+g.add_edge(g[Pos(1,2)], g[Pos(1,3)])
+g.add_edge(g[Pos(2,0)], g[Pos(2,1)])
+g.add_edge(g[Pos(2,1)], g[Pos(2,2)])
+g.add_edge(g[Pos(2,2)], g[Pos(2,3)])
+g.add_edge(g[Pos(3,0)], g[Pos(3,1)])
+g.add_edge(g[Pos(3,1)], g[Pos(3,2)])
+g.add_edge(g[Pos(3,2)], g[Pos(3,3)])
+g.add_edge(g[Pos(0,0)], g[Pos(1,0)])
+g.add_edge(g[Pos(1,0)], g[Pos(2,0)])
+g.add_edge(g[Pos(2,0)], g[Pos(3,0)])
+g.add_edge(g[Pos(0,1)], g[Pos(1,1)])
+g.add_edge(g[Pos(1,1)], g[Pos(2,1)])
+g.add_edge(g[Pos(2,1)], g[Pos(3,1)])
+g.add_edge(g[Pos(0,2)], g[Pos(1,2)])
+g.add_edge(g[Pos(1,2)], g[Pos(2,2)])
+g.add_edge(g[Pos(2,2)], g[Pos(3,2)])
+g.add_edge(g[Pos(0,3)], g[Pos(1,3)])
+g.add_edge(g[Pos(1,3)], g[Pos(2,3)])
+g.add_edge(g[Pos(2,3)], g[Pos(3,3)])
 
-x=AStar(g[Pos(0,0)], g[Pos(0,0)])
+
+x=AStar(g[Pos(0,0)], g[Pos(1,2)])
 
 print(x)
