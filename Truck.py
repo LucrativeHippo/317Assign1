@@ -15,14 +15,15 @@ class Truck(Pos):
         self.packs = packs
         self.distance = 0
         self.location = pos
+        self.lowPackage = True
 
     def __repr__(self):
         """
 
         :return: (Packages(pos.x,pos.y))
         """
-        return "(Packs:"+str(self.packs)+" Pos:"+super().__repr__()+" Odo:"+str(self.distance)+")"
-
+        #return "(Packs:"+str(self.packs)+" Pos:"+super().__repr__()+" Odo:"+str(self.distance)+")"
+        return "(Distance travelled:"+str(self.distance)+")"
     # def pickup(self, pack):
     #     """
     #

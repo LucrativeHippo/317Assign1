@@ -81,9 +81,9 @@ def unit_test():
     print("Passed")
 
 
-SIZE = 1000
-NUM_TRUCKS = 5
-NUM_PACKS = 10
+SIZE = 20
+NUM_TRUCKS = 3
+NUM_PACKS = 15
 START_TIME = time()
 func_time2 = time()
 g = Graph()
@@ -105,7 +105,7 @@ print("Edge build time: " + str(func_time-func_time2))
 func_time2 = time()
 
 truck_list = list()
-for i in range(0, NUM_TRUCKS+1):
+for i in range(0, NUM_TRUCKS):
     truck_list.append(Truck(Pos(0, 0)))
 
 func_time = time()
@@ -113,7 +113,7 @@ print("Truck build time: " + str(func_time-func_time2))
 func_time2 = time()
 
 package_list = list()
-for i in range(0, NUM_PACKS+1):
+for i in range(0, NUM_PACKS):
     package_list.append(Package(Pos(randrange(0, SIZE), randrange(1, SIZE))))
 
 print("Packages: " + str(package_list))
@@ -163,12 +163,36 @@ def solve_prob(graph, trucks, packages):
     :rtype:
     """
     # sort packages descending, distance from garage
-    packages.sort(key=lambda temp: get_hcost(trucks[0], temp), reverse=True)
+    packages.sort(key=lambda temp: get_hcost(trucks[0], temp), reverse=False)
+    print(packages)
+
+    start_package = NUM_PACKS%NUM_TRUCKS
+
 
     while len(package_list) != 0:
+        """
+        # leaves the lowest distance packages to be taken last
+        if start_package < len(packages):
+            trucks.sort(key=lambda temp: temp.distance)
+            if trucks[0].lowPackage == False:
+                p = packages.pop(start_package-1)
+                trucks[0].lowPackage = True
+            else:
+                p = packages.pop(len(packages) - 1)
+                trucks[0].lowPackage = False
+            t = trucks[0]
+
+        else:
+        """
+
         # take truck with least travelled distance to pick up furthest package
         trucks.sort(key=lambda temp: temp.distance)
-        p = packages.pop()
+        if trucks[0].lowPackage == False:
+            p = packages.pop()
+            trucks[0].lowPackage = True
+        else:
+            p = packages.pop(len(packages)-1)
+            trucks[0].lowPackage = False
         t = trucks[0]
 
         # A* to Package
