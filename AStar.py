@@ -15,9 +15,9 @@ def get_hcost(start, dest):
     :return: heuristic cost from start to dest
     """
 #   Straight line distance
-    return math.sqrt(math.pow((start.x-dest.x), 2) + math.pow((start.y-dest.y), 2))
+#    return math.sqrt(math.pow((start.x-dest.x), 2) + math.pow((start.y-dest.y), 2))
 #   Boardwalk distance
-#   return abs(start.x-dest.x)+abs(start.y-dest.y)
+    return abs(start.x-dest.x)+abs(start.y-dest.y)
 
 
 class AStarNode:
@@ -65,7 +65,7 @@ def getANode(aList,vertex):
     return None
 
 
-def AStar(start, dest):
+def astar(start, dest):
     """
 
     :type start: Vertex
@@ -73,6 +73,7 @@ def AStar(start, dest):
     :param start: start vertex
     :param dest: destination vertex
     :return: AStarNode with path to dest from start reversed
+    :rtype: AStarNode
     """
     node_list = [AStarNode(start)]
     visited_list = dict()
@@ -85,7 +86,7 @@ def AStar(start, dest):
         visited_list[str(cur_node.vertex.data)] = True
         # print("cur" + str(cur_node))
         if cur_node.vertex.data.__cmp__(dest):
-            return cur_node.gcost
+            break
 
         for e in cur_node.vertex.edges:
             # if the next node has not been visited: visit it
@@ -112,7 +113,7 @@ def AStar(start, dest):
 
     # The completed Astar did reveal the correct path
     if cur_node.vertex.data.__cmp__(dest):
-        return cur_node.gcost
+        return cur_node
     else:  # No path from Start to Destination
         return None
 

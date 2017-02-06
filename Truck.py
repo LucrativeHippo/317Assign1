@@ -21,28 +21,28 @@ class Truck(Pos):
 
         :return: (Packages(pos.x,pos.y))
         """
-        return "("+str(self.packs)+super().__repr__()+")"
+        return "(Packs:"+str(self.packs)+" Pos:"+super().__repr__()+" Odo:"+str(self.distance)+")"
 
-    def pickup(self, pack):
-        """
-
-        :param pack:
-        :type pack: Package
-        :return:
-        :rtype:
-        """
-        if self.__cmp__(pack):
-            self.packs = pack
-        else:
-            print("Tried to pickup package when on a different point")
-
-    def goto(self, pos):
-        """
-        Points truck position to 'pos'
-        :type pos: Pos
-        """
-        self.distance += 1
-        self.x = pos.x
-        self.y = pos.y
+    # def pickup(self, pack):
+    #     """
+    #
+    #     :param pack:
+    #     :type pack: Package
+    #     :return:
+    #     :rtype:
+    #     """
+    #     if self.__cmp__(pack):
+    #         self.packs = pack
+    #     else:
+    #         print("Tried to pickup package when on a different point")
+    #
+    # def goto(self, pos):
+    #     """
+    #     Points truck position to 'pos'
+    #     :type pos: Pos
+    #     """
+    #     self.distance += 1
+    #     self.x = pos.x
+    #     self.y = pos.y
 
 
