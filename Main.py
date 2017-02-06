@@ -90,16 +90,23 @@ for i in range(0, 4):
 print(getVertexByPos(g, 0, 0))
 
 print("Passed")
-"""
-for i in range(0, 3):
-    for j in range(0, 2):
+
+for i in range(0, 4):
+    for j in range(0, 3):
         g.add_edge(g[Pos(i, j)],g[Pos(i, j+1)])
 
-for i in range(0, 3):
-    for j in range(0, 2):
+for i in range(0, 4):
+    for j in range(0, 3):
         g.add_edge(g[Pos(j, i)], g[Pos(j+1, i)])
-"""
 
+truck_list = list()
+for i in range(0,1):
+    truck_list.append(Truck(Pos(0,0)))
+
+package_list = list()
+package_list.append(Package(Pos(0,3)))
+
+"""
 g.add_edge(g[Pos(0,0)], g[Pos(0,1)])
 g.add_edge(g[Pos(0,1)], g[Pos(0,2)])
 g.add_edge(g[Pos(0,2)], g[Pos(0,3)])
@@ -124,8 +131,10 @@ g.add_edge(g[Pos(2,2)], g[Pos(3,2)])
 g.add_edge(g[Pos(0,3)], g[Pos(1,3)])
 g.add_edge(g[Pos(1,3)], g[Pos(2,3)])
 g.add_edge(g[Pos(2,3)], g[Pos(3,3)])
-
-
-x=AStar(g[Pos(0,0)], g[Pos(3,3)])
-
-print(x)
+"""
+while len(package_list) != 0:
+    print("hi")
+    truck = truck_list.pop(i)
+    x=AStar(g[truck], g[package_list[0]])
+    package_list.remove(package_list[0])
+    print("truck " + str(i) + ": steps taken: " + str(x))

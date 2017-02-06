@@ -78,12 +78,14 @@ def AStar(start, dest):
     visited_list = dict()
     cur_node = None
 
+
+
     while len(node_list) != 0:
         cur_node = node_list.pop()
         visited_list[str(cur_node.vertex.data)] = True
         # print("cur" + str(cur_node))
         if cur_node.vertex.data.__cmp__(dest):
-            return cur_node
+            return cur_node.gcost
 
         for e in cur_node.vertex.edges:
             # if the next node has not been visited: visit it
@@ -106,13 +108,11 @@ def AStar(start, dest):
                         # replace if it is better
                         node_list.remove(inList)
     #               else: do nothing
-        print(node_list)
         node_list.sort(key=lambda x: x.gcost+x.hcost, reverse=True)
-        print(node_list)
 
     # The completed Astar did reveal the correct path
     if cur_node.vertex.data.__cmp__(dest):
-        return cur_node
+        return cur_node.gcost
     else:  # No path from Start to Destination
         return None
 
